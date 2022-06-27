@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^2.9.12"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.0-beta1",
+    "startbootstrap-heroic-features": "^5.0.5"
   }
 }
