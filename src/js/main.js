@@ -1,5 +1,5 @@
-import {getData, getDataById, getDataByName} from "./src/js/axios.js";
-import "./src/scss/main.scss";
+import {getData, getDataById, getDataByName} from "./axios.js";
+import "../scss/main.scss";
 
 let recherche = "Lisa";
 getData()
