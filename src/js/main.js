@@ -1,6 +1,8 @@
 import { getData, getDataById, getDataByName } from "./axios.js";
 import "../scss/main.scss";
 
+import "./add.js"
+
 let recherche = "Lisa";
 getData();
 //getDataByName(recherche)
