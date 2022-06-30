@@ -1,0 +1,1 @@
+let inputSearch = document.querySelector("#inputSearch")
