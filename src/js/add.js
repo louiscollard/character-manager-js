@@ -8,3 +8,10 @@ const toggleModal = () => {
 modalTriggers.forEach((trigger) => trigger.addEventListener("click", toggleModal));
 
 export { toggleModal, modalContainer, modalTriggers };
+const btnAdd = document.querySelector(".nav-add");
+
+const AffichForm = () => {
+	console.log("bonjour");
+};
+
+btnAdd.addEventListener("click", AffichForm);

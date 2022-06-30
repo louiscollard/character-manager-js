@@ -2,6 +2,8 @@ import { getData, getDataById, getDataByName } from "./axios.js";
 import { toggleModal, modalContainer, modalTriggers } from "./add";
 import "../scss/main.scss";
 
+import "./add.js"
+
 let recherche = "Lisa";
 getData();
 
