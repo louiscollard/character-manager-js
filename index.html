@@ -5,17 +5,18 @@
 		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 		<title>Character manager</title>
-		<script defer src="src/js/main.js" type="module"></script>
+		<link rel="stylesheet" href="">
+		<script src="/src/js/main.js" type="module"></script>
 	</head>
 	<body>
 		<header>
 			<nav class="nav">
-				<a class="nav-logo" href="#">Character manager</a>
+				<a class="nav-logo" href="index.html">Character manager</a>
 				<button class="nav-add modal-trigger" id="nav-add" type="button">+</button>
-				<form class="nav-search">
-					<input aria-label="Search" class="nav-search__input" placeholder="Search" type="search" />
-					<button class="nav-search__btn" type="submit">Search</button>
-				</form>
+				<section class="nav-search">
+					<input aria-label="Search" class="nav-search__input" placeholder="Search" type="search" id="inputSearch" />
+					<button class="nav-search__btn" type="submit" id="submitSearch">Search</button>
+				</section>
 			</nav>
 		</header>
 		<main>
