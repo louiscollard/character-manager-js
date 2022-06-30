@@ -44,4 +44,4 @@ const editModals = () => {
 	alert("bonjour");
 };
 
-export { setData, setDataById };
+export { setData, setDataById, body };

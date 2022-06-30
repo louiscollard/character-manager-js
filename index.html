@@ -11,7 +11,7 @@
 		<header>
 			<nav class="nav">
 				<a class="nav-logo" href="#">Character manager</a>
-				<button class="nav-add" type="button">+</button>
+				<button class="nav-add modal-trigger" id="nav-add" type="button">+</button>
 				<form class="nav-search">
 					<input aria-label="Search" class="nav-search__input" placeholder="Search" type="search" />
 					<button class="nav-search__btn" type="submit">Search</button>
@@ -20,7 +20,19 @@
 		</header>
 		<main>
 			<section class="grid-container"></section>
-			<section class="modals"></section>
+			<section class="modal-container">
+				<div class="overlay modal-trigger"></div>
+				<div class="modal">
+					<button class="close-modal modal-trigger">X</button>
+					<h3 class="modal-title">Add a picture</h3>
+					<img class="modal-img" src="..." alt="..." />
+					<h3 class="modal-title">Add a short description</h3>
+					<input class="modal-input" type="text" name="short-description" id="" />
+					<h3 class="modal-title">Add a long description</h3>
+					<input class="modal-input" type="text" name="long-description" id="" />
+					<button class="modal-save">Save</button>
+				</div>
+			</section>
 		</main>
 	</body>
 </html>
