@@ -11,6 +11,7 @@ const getData = async () => {
 			.then((res) => {
 			data = res.data;
 				if (data.length !== 0) {
+
 					setData(data);
 				} else {
 					console.log(`Il n'y a aucun personnage dans L'API`);
@@ -20,22 +21,32 @@ const getData = async () => {
 				let btnMore = document.querySelectorAll(".card-more")
 				btnMore.forEach((e)=> {
 					e.addEventListener("click", () => {
-						let grid = document.querySelector(".grid-container")
-						grid.innerHTML = "";
 						let fullprofileName = e.parentNode.children[0].textContent;
 						axios.get(`${url}?name=${fullprofileName}`)
 							.then((res) => {
 								data = res.data;
-								console.log(data);
-								console.log(data.name);
+								console.log(data)
 								if (data.length !== 0) {
+									const getID = res.data[0].id;
 									setDataByName(data);
+									let btnDel = document.querySelector(".del")
+									btnDel.addEventListener("click", () => {
+
+										axios.delete(
+											`https://character-database.becode.xyz/characters/${getID}`
+										);
+										alert("You have delete the profile");
+
+										getData();
+									})
+
 								} else {
 									alert(`Le personnage rechercher n'existe pas`);
 									getData();
 								}
 							})
 					})
+
 				})
 			})
 
@@ -47,20 +58,4 @@ const getData = async () => {
 
 
 
-const getDataById = async (id) => {
-	try {
-		await axios.get(`${url}/${id}`).then((res) => {
-			data = res.data;
-		});
-	} catch (error) {
-		console.error("id pas trouvé");
-	}
-	if (data.length !== 0) {
-		setDataById(data);
-	} else {
-		alert(`L'id rechercher n'existe pas`);
-		await getData();
-	}
-};
-
-export { getData, getDataById};
+export { getData};

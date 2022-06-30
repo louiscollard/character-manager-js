@@ -1,5 +1,5 @@
 import axios from "axios";
-import {setData} from "./data.js";
+import {setData, setDataByName} from "./data.js";
 import {getData} from "./axios.js";
 
 
@@ -26,8 +26,26 @@ let displayCharacterSearch = (inputSearch) => {
                 let btnMore = document.querySelectorAll(".card-more")
                 btnMore.forEach((e)=> {
                     e.addEventListener("click", () => {
-                        alert("bonjour")
+                        let grid = document.querySelector(".grid-container")
+                        grid.innerHTML = "";
+                        let fullprofileName = e.parentNode.children[0].textContent;
+                        axios.get(`${url}?name=${fullprofileName}`)
+                            .then((res) => {
+                                data = res.data;
+                                console.log(data);
+                                console.log(data.name);
+                                if (data.length !== 0) {
+                                    setDataByName(data);
+                                } else {
+                                    alert(`Le personnage rechercher n'existe pas`);
+                                    getData();
+                                }
+                            })
                     })
+                })
+                let btnDel = document.querySelector(".card-body__del")
+                btnDel.addEventListener("click", () => {
+                    console.log("fullprofileName")
                 })
             })
     } catch (error) {
