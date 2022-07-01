@@ -10,8 +10,10 @@ let data = [];
 let url = `https://character-database.becode.xyz/characters`;
 
 let displayCharacterSearch = (inputSearch) => {
+    let inputValue = inputSearch.value;
+
     try {
-        axios.get(`${url}?name=${inputSearch.value}`)
+        axios.get(`${url}?name=${inputValue}`)
             .then((res) => {
                 data = res.data;
                 console.log(data);

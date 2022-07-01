@@ -44,8 +44,6 @@ const setDataByName = (data) => {
 		cardBody.append(cardName, short,long, del, modif);
 		body.appendChild(section);
 		section.append(img, cardBody);
-		console.log(datas.id)
-		//Btn modifier et delete
 	}
 };
 
