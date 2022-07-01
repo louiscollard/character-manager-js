@@ -1,9 +1,7 @@
-import { getData, getDataById, getDataByName } from "./axios.js";
-import { toggleModal, modalContainer, modalTriggers } from "./add";
 import "../scss/main.scss";
+import { getData } from "./axios.js";
+import { toggleModal, modalContainer, modalTriggers } from "./add.js";
+import "./search.js";
 
 let recherche = "Lisa";
 getData();
-
-//getDataByName(recherche)
-//getDataById("f3e8d922-2b53-472e-9671-c0501a104514");

@@ -6,9 +6,28 @@ const setData = (data) => {
 		createCard(datas);
 	}
 };
+//modifier
+const setDataByName = (data) => {
+	for (let datas of data) {
+		let section = document.createElement("section");
+		let img = document.createElement("img");
+		let cardBody = document.createElement("div");
+		let cardName = document.createElement("h5");
+		let short = document.createElement("p");
+		let long = document.createElement("p");
 
-const setDataById = (data) => {
-	createCard(data);
+
+		body.appendChild(section);
+		img.setAttribute("src", `data:image/jpg;base64,${datas.image}`);
+		cardName.innerHTML = `${datas.name}`;
+		short.innerHTML = `${datas.shortDescription}`;
+		long.innerText = `${datas.description}`;
+		cardBody.append(cardName, short, long);
+		body.appendChild(section);
+		section.append(img, cardBody);
+
+		//Btn modifier et delete
+	}
 };
 
 const createCard = (data) => {
@@ -23,7 +42,6 @@ const createCard = (data) => {
 	link.classList.add("card-more");
 	section.classList.add("card");
 	body.appendChild(section);
-	section.innerHTML = `${data.name}`;
 	section.classList.add("card");
 	cardBody.classList.add("card-body");
 	img.setAttribute("src", `data:image/jpg;base64,${data.image}`);
@@ -33,10 +51,9 @@ const createCard = (data) => {
 	short.innerHTML = `${data.shortDescription}`;
 	long.classList.add("card-body__long_text");
 	long.innerText = `${data.description}`;
-	cardBody.append(cardName, short);
+	cardBody.append(cardName, short,link);
 	body.appendChild(section);
 	section.append(img, cardBody);
-	section.appendChild(link);
 	link.innerHTML = `Afficher plus`;
 };
 
@@ -44,4 +61,4 @@ const editModals = () => {
 	alert("bonjour");
 };
 
-export { setData, setDataById, body };
+export { setData, setDataByName, body };
