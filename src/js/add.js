@@ -1,14 +1,14 @@
 import axios from "axios";
+import { getData } from "./axios.js";
 
-const url = `https://character-database.becode.xyz/characters`;
 const modalContainer = document.querySelector(".modal-container");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
-const inputName = document.getElementById("input-name");
-const inputSubmit = document.getElementById("input-submit");
+const inputName = document.querySelector("#input-name");
+const inputSubmit = document.querySelector("#input-submit");
 const inputImg = document.querySelector("input[type=file]");
-const inputShortText = document.getElementById("input-short-description");
-const inputLongText = document.getElementById("input-long-description");
-const form = document.getElementById("form");
+const inputShortText = document.querySelector("#input-short-description");
+const inputLongText = document.querySelector("#input-long-description");
+const form = document.querySelector("#form");
 let base64 = "";
 
 // Add modal
@@ -45,8 +45,10 @@ const postData = async () => {
 };
 
 // Send infos api
-form.addEventListener("click", () => {
+form.addEventListener("submit", (e) => {
+	e.preventDefault();
 	postData();
+	toggleModal();
 });
 
-export { toggleModal, modalContainer, modalTriggers };
+export { toggleModal, modalContainer, modalTriggers, postData };
