@@ -4,6 +4,7 @@
 @import "./modal";
 
 body {
+	min-height: 100vh;
 	background: linear-gradient(#4444f5, #c700ff);
 	font-family: "roboto", Arial, Helvetica, sans-serif;
 }
