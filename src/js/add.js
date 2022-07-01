@@ -8,6 +8,7 @@ const inputSubmit = document.getElementById("input-submit");
 const inputImg = document.querySelector("input[type=file]");
 const inputShortText = document.getElementById("input-short-description");
 const inputLongText = document.getElementById("input-long-description");
+const form = document.getElementById("form");
 let base64 = "";
 
 // Add modal
@@ -44,7 +45,7 @@ const postData = async () => {
 };
 
 // Send infos api
-inputSubmit.addEventListener("click", () => {
+form.addEventListener("click", () => {
 	postData();
 });
 
