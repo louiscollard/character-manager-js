@@ -1,14 +1,15 @@
 import axios from "axios";
 import { getData } from "./axios.js";
 
-const modalContainer = document.querySelector(".modal-container");
+const grid = document.querySelector(".grid-container");
+const modalContainer = document.querySelector(".add");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
 const inputName = document.querySelector("#input-name");
 const inputSubmit = document.querySelector("#input-submit");
 const inputImg = document.querySelector("input[type=file]");
 const inputShortText = document.querySelector("#input-short-description");
 const inputLongText = document.querySelector("#input-long-description");
-const form = document.querySelector("#form");
+const form = document.querySelector(".form");
 let base64 = "";
 
 // Add modal
@@ -33,22 +34,39 @@ inputImg.addEventListener("change", () => {
 
 const postData = async () => {
 	try {
-		await axios.post(`https://character-database.becode.xyz/characters`, {
-			name: inputName.value,
-			shortDescription: inputShortText.value,
-			description: inputLongText.value,
-			image: base64,
-		});
+		await axios
+			.post(`https://character-database.becode.xyz/characters`, {
+				name: inputName.value,
+				shortDescription: inputShortText.value,
+				description: inputLongText.value,
+				image: base64,
+			})
+			.then(() => {
+				reload(grid);
+				getData();
+			});
 	} catch (e) {
 		console.log(e);
 	}
 };
+
+function reload(parent) {
+	while (parent.firstChild) {
+		parent.removeChild(parent.firstChild);
+	}
+}
 
 // Send infos api
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 	postData();
 	toggleModal();
+	// remettre à zero les input
+
+	inputName.value = "";
+	inputShortText.value = "";
+	inputLongText.value = "";
+	base64 = "";
 });
 
 export { toggleModal, modalContainer, modalTriggers, postData };
