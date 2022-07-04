@@ -24,16 +24,18 @@ const toggleModal = () => {
 modalTriggers.forEach((trigger) => trigger.addEventListener("click", toggleModal));
 
 const convertBase64 = () => {
-	let file = document.querySelector("input[type=file]")["files"][0];
+
 	let reader = new FileReader();
 	reader.onload = () => {
-		base64 = reader.result.replace("data:", "").replace(/^.+,/, "");
+		return base64 = reader.result.replace("data:", "").replace(/^.+,/, "");
 	};
-	reader.readAsDataURL(file);
+	if(event.target.files[0]){
+		reader.readAsDataURL(event.target.files[0]);
+	}
 };
 
 inputImg.addEventListener("change", () => {
-	convertBase64();
+	base64 = convertBase64();
 });
 
 const postData = async () => {
@@ -74,4 +76,4 @@ form.addEventListener("submit", (e) => {
 	base64 = "";
 });
 
-export { toggleModal, modalContainer, modalTriggers, postData };
+export { toggleModal, modalContainer, modalTriggers, postData, convertBase64 };
