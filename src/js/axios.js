@@ -35,8 +35,9 @@ const getData = async () => {
 										axios.delete(`https://character-database.becode.xyz/characters/${getID}`);
 										//créer une div alert en haut de la page avec un timeout
 										alert(`${res.data[0].name} à bien été supprimer`);
+										getData();
 									}
-									getData();
+
 								});
 								let btnModif = document.querySelector(".modif");
 								btnModif.addEventListener("click", () => {
