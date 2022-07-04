@@ -9,12 +9,16 @@ const inputSubmit = document.querySelector("#input-submit");
 const inputImg = document.querySelector("input[type=file]");
 const inputShortText = document.querySelector("#input-short-description");
 const inputLongText = document.querySelector("#input-long-description");
-const form = document.querySelector(".form");
+const form = document.querySelector(".formAdd");
 let base64 = "";
 
 // Add modal
 const toggleModal = () => {
 	modalContainer.classList.toggle("active");
+	inputName.value = "";
+	inputShortText.value = "";
+	inputLongText.value = "";
+	base64 = "";
 };
 
 modalTriggers.forEach((trigger) => trigger.addEventListener("click", toggleModal));
@@ -61,6 +65,7 @@ form.addEventListener("submit", (e) => {
 	e.preventDefault();
 	postData();
 	toggleModal();
+
 	// remettre à zero les input
 
 	inputName.value = "";
