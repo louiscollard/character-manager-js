@@ -1,4 +1,6 @@
-import axios, {getData} from "axios";
+import axios from "axios";
+import { getData } from "./axios.js";
+import {setDataByName} from "./data.js";
 
 const inputName = document.querySelector("#input-name-Edit");
 const inputShortText = document.querySelector("#input-short-description-Edit");
@@ -9,6 +11,8 @@ let modalContainers = document.querySelector(".edit");
 const formEdit = document.querySelector("#form-Edit");
 let base64Edit = "";
 let img = "";
+const grid = document.querySelector(".grid-container");
+let data = [];
 
 
 const getFormEdit = (e) => {
@@ -20,23 +24,33 @@ const getFormEdit = (e) => {
 
 
 
-const editData = async (getID) => {
+const editData = async (e) => {
 	try {
 		await axios
-			.put(`https://character-database.becode.xyz/characters/${getID}`, {
+			.put(`https://character-database.becode.xyz/characters/${e}`, {
 				name: inputName.value,
 				shortDescription: inputShortText.value,
 				description: inputLongText.value,
 				image: base64,
 			})
-			.then(() => {
-				alert("put");
-			});
+			.then((e) => {
+				let fullprofileName = e.name
+				let url = `https://character-database.becode.xyz/characters`;
+				axios.get(`${url}?name=${fullprofileName}`).then((res) => {
+					data = res.data;})
+				setDataByName(data);
+				console.log(data)
+			})
 	} catch (e) {
 		console.log(e);
 	}
 };
 
+function reload(parent) {
+	while (parent.firstChild) {
+		parent.removeChild(parent.firstChild);
+	}
+}
 
 const togglesModal = () => {
 	modalContainers.classList.toggle("active");
@@ -46,7 +60,6 @@ const togglesModal = () => {
 const edit = (e) => {
 	togglesModal();
 	getFormEdit(e);
-	console.log(base64)
 	inputImgEdit.addEventListener("change", () => {
 		let reader = new FileReader();
 		reader.onload = () => {
@@ -58,8 +71,18 @@ const edit = (e) => {
 	});
 	formEdit.addEventListener("submit", (event) => {
 		event.preventDefault();
-		editData(e.id);
-		togglesModal();
+		if (confirm(`Etes vous sur de vouloir modifier ${e.name}`)){
+			editData(e.id);
+			togglesModal();
+			reload(grid);
+			let fullprofileName = e.name
+			let url = `https://character-database.becode.xyz/characters`;
+			axios.get(`${url}?name=${fullprofileName}`).then((res) => {
+				data = res.data;})
+			setDataByName(data);
+		}
+
+
 	});
 };
 
