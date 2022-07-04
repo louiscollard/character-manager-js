@@ -74,4 +74,4 @@ form.addEventListener("submit", (e) => {
 	base64 = "";
 });
 
-export { toggleModal, modalContainer, modalTriggers, postData };
+export { toggleModal, modalContainer, modalTriggers, postData, convertBase64 };

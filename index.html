@@ -5,7 +5,7 @@
 		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 		<title>Character manager</title>
-		<link rel="stylesheet" href="" />
+		<link href="" rel="stylesheet" />
 		<script src="/src/js/main.js" type="module"></script>
 	</head>
 	<body>
@@ -14,8 +14,8 @@
 				<a class="nav-logo" href="index.html">Character manager</a>
 				<button class="nav-add modal-trigger" id="nav-add" type="button">+</button>
 				<section class="nav-search">
-					<input aria-label="Search" class="nav-search__input" placeholder="Search" type="search" id="inputSearch" />
-					<button class="nav-search__btn" type="submit" id="submitSearch">Search</button>
+					<input aria-label="Search" class="nav-search__input" id="inputSearch" placeholder="Search" type="search" />
+					<button class="nav-search__btn" id="submitSearch" type="submit">Search</button>
 				</section>
 			</nav>
 		</header>
@@ -25,16 +25,33 @@
 				<div class="overlay modal-trigger"></div>
 				<div class="modal">
 					<button class="close-modal modal-trigger">X</button>
-					<form id="form" class="formAdd">
+					<form class="formAdd" id="form">
 						<h3 class="modal-title">Add a name</h3>
-						<input class="modal-input" type="text" name="name-character" id="input-name" required />
+						<input class="modal-input" id="input-name" name="name-character" required type="text" />
 						<h3 class="modal-title">Add a picture</h3>
-						<input class="modal-img" type="file" id="input-img" required accept=".jpeg, .png, .jpg" />
+						<input accept=".jpeg, .png, .jpg" class="modal-img" id="input-img" required type="file" />
 						<h3 class="modal-title">Add a short description</h3>
-						<input class="modal-input" type="text" name="short-description" id="input-short-description" required />
+						<input class="modal-input" id="input-short-description" name="short-description" required type="text" />
 						<h3 class="modal-title">Add a long description</h3>
-						<input class="modal-input" type="text" name="long-description" id="input-long-description" required />
-						<button type="submit" class="modal-save btn-add" id="input-submit">Submit</button>
+						<input class="modal-input" id="input-long-description" name="long-description" required type="text" />
+						<button class="modal-save btn-add" id="input-submit" type="submit">Submit</button>
+					</form>
+				</div>
+			</section>
+			<section class="modal-container edit">
+				<div class="overlay modal-trigger"></div>
+				<div class="modal">
+					<button class="close-modal modal-trigger">X</button>
+					<form class="form" id="form-Edit">
+						<h3 class="modal-title">Add a name</h3>
+						<input class="modal-input" id="input-name-Edit" name="name-character" required type="text" />
+						<h3 class="modal-title">Add a picture</h3>
+						<input accept=".jpeg, .png, .jpg" class="modal-img" id="input-img-Edit" type="file" />
+						<h3 class="modal-title">Add a short description</h3>
+						<input class="modal-input" id="input-short-description-Edit" name="short-description" required type="text" />
+						<h3 class="modal-title">Add a long description</h3>
+						<input class="modal-input" id="input-long-description-Edit" name="long-description" required type="text" />
+						<button class="modal-save" id="input-submit-Edit" type="submit">Submit</button>
 					</form>
 				</div>
 			</section>

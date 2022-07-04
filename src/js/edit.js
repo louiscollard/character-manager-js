@@ -1,19 +1,20 @@
-import { toggleModal } from "./add.js";
 import axios from "axios";
+import { modalTriggers, convertBase64 } from "./add.js";
 
-const inputName = document.querySelector("#input-name");
-const inputShortText = document.querySelector("#input-short-description");
-const inputLongText = document.querySelector("#input-long-description");
+const inputName = document.querySelector("#input-name-Edit");
+const inputShortText = document.querySelector("#input-short-description-Edit");
+const inputLongText = document.querySelector("#input-long-description-Edit");
+const inputImg = document.querySelector("input[type=file]");
 let base64 = "";
-let formEdit = document.querySelector(".formAdd");
+let modalContainers = document.querySelector(".edit");
+const formEdit = document.querySelector("#form-Edit");
+let base64Edit = "";
 
 const getFormEdit = (e) => {
-	formEdit.classList.remove("formAdd");
-	formEdit.classList.add("formEdit");
 	inputName.value = e.name;
 	inputShortText.value = e.shortDescription;
 	inputLongText.value = e.description;
-	base64 = e.image;
+	base64Edit = e.image;
 };
 
 const editData = async (getID) => {
@@ -23,7 +24,7 @@ const editData = async (getID) => {
 				name: inputName.value,
 				shortDescription: inputShortText.value,
 				description: inputLongText.value,
-				image: base64,
+				image: base64Edit,
 			})
 			.then(() => {
 				alert("put");
@@ -33,9 +34,25 @@ const editData = async (getID) => {
 	}
 };
 
-const test = (e) => {
-	toggleModal();
-	getFormEdit(e);
+inputImg.addEventListener("change", () => {
+	base64Edit = convertBase64();
+});
+
+const togglesModal = () => {
+	modalContainers.classList.toggle("active");
 };
 
-export { test };
+modalTriggers.forEach((trigger) => trigger.addEventListener("click", togglesModal));
+
+const edit = (e) => {
+	togglesModal();
+	getFormEdit(e);
+	formEdit.addEventListener("submit", (event) => {
+		console.log("base64Edit");
+		event.preventDefault();
+		editData(e.id);
+		togglesModal();
+	});
+};
+
+export { edit };

@@ -1,6 +1,6 @@
 import { setData, setDataByName } from "./data.js";
 import axios from "axios";
-import { test } from "./edit.js";
+import { edit } from "./edit.js";
 
 let url = `https://character-database.becode.xyz/characters`;
 let grid = document.querySelector(".grid-container");
@@ -41,7 +41,7 @@ const getData = async () => {
 								let btnModif = document.querySelector(".modif");
 								btnModif.addEventListener("click", () => {
 									//afficher le formulaire avec les inscription dedans
-									test(res.data[0]);
+									edit(res.data[0]);
 
 									//Quand on appuie sur envoyé -> axios.put -> reprendre la logique du ADD
 									//rafraichir les informations
