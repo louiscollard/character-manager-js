@@ -9,6 +9,7 @@ let base64 = "";
 let modalContainers = document.querySelector(".edit");
 const formEdit = document.querySelector("#form-Edit");
 let base64Edit = "";
+let img = "";
 
 const getFormEdit = (e) => {
 	inputName.value = e.name;
@@ -34,21 +35,14 @@ const editData = async (getID) => {
 	}
 };
 
-inputImg.addEventListener("change", () => {
-	base64Edit = convertBase64();
-});
-
 const togglesModal = () => {
 	modalContainers.classList.toggle("active");
 };
-
-modalTriggers.forEach((trigger) => trigger.addEventListener("click", togglesModal));
 
 const edit = (e) => {
 	togglesModal();
 	getFormEdit(e);
 	formEdit.addEventListener("submit", (event) => {
-		console.log("base64Edit");
 		event.preventDefault();
 		editData(e.id);
 		togglesModal();
