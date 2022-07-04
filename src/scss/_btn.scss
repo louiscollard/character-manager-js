@@ -1,0 +1,23 @@
+@import "./mixins";
+
+.modif,
+.modif-card-full-screen,
+.card-more {
+	@include btn;
+	background-color: rgb(61, 14, 111);
+}
+
+.del,
+.del-card-full-screen {
+	@include btn;
+	margin-right: 50px;
+	background-color: rgb(111, 14, 14);
+}
+
+.del:hover,
+.modif:hover,
+.card-more:hover,
+.modif-card-full-screen:hover,
+.del-card-full-screen:hover {
+	background: rgba(220, 220, 220, 0.5);
+}

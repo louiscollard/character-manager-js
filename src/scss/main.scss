@@ -2,6 +2,11 @@
 @import "./navbar";
 @import "./cards";
 @import "./modal";
+@import "./btn";
+
+* {
+	box-sizing: border-box;
+}
 
 body {
 	min-height: 100vh;
