@@ -1,22 +1,25 @@
-import { toggleModal } from "./add.js";
 import axios from "axios";
 
-const inputName = document.querySelector("#input-name");
-const inputShortText = document.querySelector("#input-short-description");
-const inputLongText = document.querySelector("#input-long-description");
+const inputName = document.querySelector("#input-name-Edit");
+const inputShortText = document.querySelector("#input-short-description-Edit");
+const inputLongText = document.querySelector("#input-long-description-Edit");
+const inputImg = document.querySelector("input[type=file]");
 let base64 = "";
-let formEdit = document.querySelector(".formAdd");
+let modalContainers = document.querySelector(".edit");
+const formEdit = document.querySelector("#form-Edit");
+let base64Edit = "";
+let img = "";
+
 
 const getFormEdit = (e) => {
-	formEdit.classList.remove("formAdd");
-	formEdit.classList.add("formEdit");
 	inputName.value = e.name;
 	inputShortText.value = e.shortDescription;
 	inputLongText.value = e.description;
-	base64 = e.image;
+	base64Edit = e.image;
 };
 
 const editData = async (getID) => {
+
 	try {
 		await axios
 			.put(`https://character-database.becode.xyz/characters/${getID}`, {
@@ -33,9 +36,20 @@ const editData = async (getID) => {
 	}
 };
 
-const test = (e) => {
-	toggleModal();
-	getFormEdit(e);
+
+const togglesModal = () => {
+	modalContainers.classList.toggle("active");
 };
 
-export { test };
+
+const edit = (e) => {
+	togglesModal();
+	getFormEdit(e);
+	formEdit.addEventListener("submit", (event) => {
+		event.preventDefault();
+		editData(e.id);
+		togglesModal();
+	});
+};
+
+export {edit};
