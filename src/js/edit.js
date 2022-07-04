@@ -1,5 +1,5 @@
-import axios from "axios";
-import { setDataByName } from "./data.js";
+import axios, {getData} from "axios";
+import {setDataByName} from "./data.js";
 
 const inputName = document.querySelector("#input-name-Edit");
 const inputShortText = document.querySelector("#input-short-description-Edit");
@@ -13,73 +13,94 @@ let base64 = "";
 let data = [];
 
 const getFormEdit = (e) => {
-	inputName.value = e.name;
-	inputShortText.value = e.shortDescription;
-	inputLongText.value = e.description;
-	base64 = e.image;
+    inputName.value = e.name;
+    inputShortText.value = e.shortDescription;
+    inputLongText.value = e.description;
+    base64 = e.image;
 };
 
 const editData = async (e) => {
-	try {
-		await axios
-			.put(`https://character-database.becode.xyz/characters/${e}`, {
-				name: inputName.value,
-				shortDescription: inputShortText.value,
-				description: inputLongText.value,
-				image: base64,
-			})
-			.then((e) => {
-				let fullprofileName = e.name;
-				let url = `https://character-database.becode.xyz/characters`;
-				axios.get(`${url}?name=${fullprofileName}`).then((res) => {
-					data = res.data;
-				});
-				setDataByName(data);
-				console.log(data);
-			});
-	} catch (e) {
-		console.log(e);
-	}
+    let name = e.name
+    let id = e.id
+    try {
+        await axios
+            .put(`https://character-database.becode.xyz/characters/${id}`, {
+                name: inputName.value,
+                shortDescription: inputShortText.value,
+                description: inputLongText.value,
+                image: base64,
+            })
+            .then((e) => {
+
+                let url = `https://character-database.becode.xyz/characters`;
+                axios.get(`${url}?name=${name}`).then((res) => {
+                    data = res.data;
+                })
+                    .then(() => {
+                        reload(grid);
+                        setDataByName(data);
+					})
+					.then(()=> {
+						axios.get(`${url}?name=${name}`).then((res) => {
+							data = res.data;
+							if (data.length !== 0) {
+								const getID = res.data[0].id;
+								setDataByName(data);
+								let btnDel = document.querySelector(".del");
+								btnDel.addEventListener("click", () => {
+									if (confirm(`Etes vous sûr de vouloir supprimer ${res.data[0].name}?`)) {
+										axios.delete(`https://character-database.becode.xyz/characters/${getID}`);
+										//créer une div alert en haut de la page avec un timeout
+										alert(`${res.data[0].name} à bien été supprimer`);
+										getData();
+									}
+
+								});
+								let btnModif = document.querySelector(".modif");
+								btnModif.addEventListener("click", () => {
+									edit(res.data[0]);
+								});
+							}
+						});
+					})
+
+            })
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 function reload(parent) {
-	while (parent.firstChild) {
-		parent.removeChild(parent.firstChild);
-	}
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
 
 const togglesModal = () => {
-	modalContainers.classList.toggle("active");
+    modalContainers.classList.toggle("active");
 };
 
 modalTriggersEdit.forEach((trigger) => trigger.addEventListener("click", togglesModal));
 
 const edit = (e) => {
-	togglesModal();
-	getFormEdit(e);
-	inputImgEdit.addEventListener("change", () => {
-		let reader = new FileReader();
-		reader.onload = () => {
-			base64 = reader.result.replace("data:", "").replace(/^.+,/, "");
-		};
-		if (event.target.files[0]) {
-			reader.readAsDataURL(event.target.files[0]);
-		}
-	});
-	formEdit.addEventListener("submit", (event) => {
-		event.preventDefault();
-		if (confirm(`Etes vous sur de vouloir modifier ${e.name}`)) {
-			editData(e.id);
-			togglesModal();
-			reload(grid);
-			let fullprofileName = e.name;
-			let url = `https://character-database.becode.xyz/characters`;
-			axios.get(`${url}?name=${fullprofileName}`).then((res) => {
-				data = res.data;
-			});
-			setDataByName(data);
-		}
-	});
+    togglesModal();
+    getFormEdit(e);
+    inputImgEdit.addEventListener("change", () => {
+        let reader = new FileReader();
+        reader.onload = () => {
+            base64 = reader.result.replace("data:", "").replace(/^.+,/, "");
+        };
+        if (event.target.files[0]) {
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+    formEdit.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (confirm(`Etes vous sur de vouloir modifier ${e.name}`)) {
+            editData(e);
+            togglesModal();
+        }
+    });
 };
 
-export { edit, modalTriggersEdit };
+export {edit, modalTriggersEdit};
