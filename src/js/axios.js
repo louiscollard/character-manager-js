@@ -40,11 +40,7 @@ const getData = async () => {
 								});
 								let btnModif = document.querySelector(".modif");
 								btnModif.addEventListener("click", () => {
-									//afficher le formulaire avec les inscription dedans
 									edit(res.data[0]);
-
-									//Quand on appuie sur envoyé -> axios.put -> reprendre la logique du ADD
-									//rafraichir les informations
 								});
 							} else {
 								alert(`Le personnage rechercher n'existe pas`);
