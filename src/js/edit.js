@@ -1,10 +1,5 @@
 import axios from "axios";
-<<<<<<< Updated upstream
-import { getData } from "./axios.js";
 import { setDataByName } from "./data.js";
-=======
-import {setDataByName} from "./data.js";
->>>>>>> Stashed changes
 
 const inputName = document.querySelector("#input-name-Edit");
 const inputShortText = document.querySelector("#input-short-description-Edit");
@@ -14,13 +9,7 @@ const modalContainers = document.querySelector(".edit");
 const modalTriggersEdit = document.querySelectorAll(".modal-trigger-edit");
 const formEdit = document.querySelector("#form-Edit");
 const grid = document.querySelector(".grid-container");
-let base64Edit = "";
-<<<<<<< Updated upstream
 let base64 = "";
-let img = "";
-=======
-const grid = document.querySelector(".grid-container");
->>>>>>> Stashed changes
 let data = [];
 
 const getFormEdit = (e) => {
@@ -37,23 +26,17 @@ const editData = async (e) => {
 				name: inputName.value,
 				shortDescription: inputShortText.value,
 				description: inputLongText.value,
-				image: base64Edit,
+				image: base64,
 			})
 			.then((e) => {
 				let fullprofileName = e.name;
 				let url = `https://character-database.becode.xyz/characters`;
 				axios.get(`${url}?name=${fullprofileName}`).then((res) => {
 					data = res.data;
-<<<<<<< Updated upstream
 				});
 				setDataByName(data);
 				console.log(data);
 			});
-=======
-				})
-                setDataByName(data)
-			})
->>>>>>> Stashed changes
 	} catch (e) {
 		console.log(e);
 	}
