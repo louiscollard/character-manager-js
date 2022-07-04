@@ -12,7 +12,7 @@
 		<header>
 			<nav class="nav">
 				<a class="nav-logo" href="index.html">Character manager</a>
-				<button class="nav-add modal-trigger" id="nav-add" type="button">+</button>
+				<button class="nav-add modal-trigger-add" id="nav-add" type="button">+</button>
 				<section class="nav-search">
 					<input aria-label="Search" class="nav-search__input" id="inputSearch" placeholder="Search" type="search" />
 					<button class="nav-search__btn" id="submitSearch" type="submit">Search</button>
@@ -22,9 +22,9 @@
 		<main>
 			<section class="grid-container"></section>
 			<section class="modal-container add">
-				<div class="overlay modal-trigger"></div>
+				<div class="overlay modal-trigger-add"></div>
 				<div class="modal">
-					<button class="close-modal modal-trigger">X</button>
+					<button class="close-modal modal-trigger-add">X</button>
 					<form class="formAdd" id="form">
 						<h3 class="modal-title">Add a name</h3>
 						<input class="modal-input" id="input-name" name="name-character" required type="text" />
@@ -39,9 +39,9 @@
 				</div>
 			</section>
 			<section class="modal-container edit">
-				<div class="overlay modal-trigger"></div>
+				<div class="overlay modal-trigger-edit"></div>
 				<div class="modal">
-					<button class="close-modal modal-trigger">X</button>
+					<button class="close-modal modal-trigger-edit">X</button>
 					<form class="form" id="form-Edit">
 						<h3 class="modal-title">Add a name</h3>
 						<input class="modal-input" id="input-name-Edit" name="name-character" required type="text" />

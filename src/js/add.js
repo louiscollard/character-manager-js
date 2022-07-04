@@ -3,7 +3,7 @@ import { getData } from "./axios.js";
 
 const grid = document.querySelector(".grid-container");
 const modalContainer = document.querySelector(".add");
-const modalTriggers = document.querySelectorAll(".modal-trigger");
+const modalTriggersAdd = document.querySelectorAll(".modal-trigger-add");
 const inputName = document.querySelector("#input-name");
 const inputSubmit = document.querySelector("#input-submit");
 const inputImg = document.querySelector("input[type=file]");
@@ -21,19 +21,20 @@ const toggleModal = () => {
 	base64 = "";
 };
 
-modalTriggers.forEach((trigger) => trigger.addEventListener("click", toggleModal));
+modalTriggersAdd.forEach((trigger) => trigger.addEventListener("click", toggleModal));
 
 const convertBase64 = () => {
-	let file = document.querySelector("input[type=file]")["files"][0];
 	let reader = new FileReader();
 	reader.onload = () => {
-		base64 = reader.result.replace("data:", "").replace(/^.+,/, "");
+		return (base64 = reader.result.replace("data:", "").replace(/^.+,/, ""));
 	};
-	reader.readAsDataURL(file);
+	if (event.target.files[0]) {
+		reader.readAsDataURL(event.target.files[0]);
+	}
 };
 
 inputImg.addEventListener("change", () => {
-	convertBase64();
+	base64 = convertBase64();
 });
 
 const postData = async () => {
@@ -74,4 +75,4 @@ form.addEventListener("submit", (e) => {
 	base64 = "";
 });
 
-export { toggleModal, modalContainer, modalTriggers, postData, convertBase64 };
+export { toggleModal, modalContainer, modalTriggersAdd, postData, convertBase64 };

@@ -1,6 +1,6 @@
 import { setData, setDataByName } from "./data.js";
 import axios from "axios";
-import { edit } from "./edit.js";
+import { edit, modalTriggersEdit } from "./edit.js";
 
 let url = `https://character-database.becode.xyz/characters`;
 let grid = document.querySelector(".grid-container");

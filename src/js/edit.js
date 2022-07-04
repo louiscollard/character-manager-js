@@ -1,12 +1,12 @@
-import axios from "axios";
-import { modalTriggers, convertBase64 } from "./add.js";
+import axios, { getData } from "axios";
 
 const inputName = document.querySelector("#input-name-Edit");
 const inputShortText = document.querySelector("#input-short-description-Edit");
 const inputLongText = document.querySelector("#input-long-description-Edit");
-const inputImg = document.querySelector("input[type=file]");
+const inputImgEdit = document.querySelector("#input-img-Edit");
 let base64 = "";
 let modalContainers = document.querySelector(".edit");
+const modalTriggersEdit = document.querySelectorAll(".modal-trigger-edit");
 const formEdit = document.querySelector("#form-Edit");
 let base64Edit = "";
 let img = "";
@@ -15,7 +15,7 @@ const getFormEdit = (e) => {
 	inputName.value = e.name;
 	inputShortText.value = e.shortDescription;
 	inputLongText.value = e.description;
-	base64Edit = e.image;
+	base64 = e.image;
 };
 
 const editData = async (getID) => {
@@ -39,9 +39,21 @@ const togglesModal = () => {
 	modalContainers.classList.toggle("active");
 };
 
+modalTriggersEdit.forEach((trigger) => trigger.addEventListener("click", togglesModal));
+
 const edit = (e) => {
 	togglesModal();
 	getFormEdit(e);
+	console.log(base64);
+	inputImgEdit.addEventListener("change", () => {
+		let reader = new FileReader();
+		reader.onload = () => {
+			base64 = reader.result.replace("data:", "").replace(/^.+,/, "");
+		};
+		if (event.target.files[0]) {
+			reader.readAsDataURL(event.target.files[0]);
+		}
+	});
 	formEdit.addEventListener("submit", (event) => {
 		event.preventDefault();
 		editData(e.id);
@@ -49,4 +61,4 @@ const edit = (e) => {
 	});
 };
 
-export { edit };
+export { edit, modalTriggersEdit };
