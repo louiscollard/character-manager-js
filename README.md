@@ -14,8 +14,9 @@ Html, SCSS, JS.
 
 - [Louis collard](https://github.com/louiscollard?tab=repositories)
 - [Marlene Bouvard](https://github.com/llyllyra?tab=repositories)
--
 
 ## Projet mis en ligne:
 
-Le projet à été mis en ligne sur [Lien]()
+Le projet à été mis en ligne sur netifly
+
+[Lien](https://amazing-stroopwafel-62de73.netlify.app/index.html)
