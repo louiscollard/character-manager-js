@@ -19,4 +19,4 @@ Html, SCSS, JS.
 
 Le projet à été mis en ligne sur netifly
 
-[Lien](https://62c6e0b5e11ccf1afea19124--glowing-churros-4b1d55.netlify.app/)
+[Lien](https://amazing-stroopwafel-62de73.netlify.app/)
